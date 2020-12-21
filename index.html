@@ -1,63 +1,64 @@
 <style>
-    #countdownTopMobile {
-      font-family: Century Gothic;
-      font-size: 10px;
-      color: #c22026;
-      /* -webkit-text-stroke: 0.085rem #c22026; */
-      letter-spacing: 0.09em;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  #countdownTopMobile {
+    font-family: Century Gothic;
+    font-size: 10px;
+    color: #fff;
+    /* -webkit-text-stroke: 0.085rem #c22026; */
+    letter-spacing: 0.09em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .separatorTopMobile {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+</style>
+
+<strong>
+  <p id="countdownTopMobile">
+    <span id="daysTopMobile">_</span><span class="separatorTopMobile">D</span>
+    <span id="hoursTopMobile">_</span><span class="separatorTopMobile">H</span>
+    <span id="minutesTopMobile">_</span
+    ><span class="separatorTopMobile">M</span>
+    <span id="secondsTopMobile">_</span
+    ><span class="separatorTopMobile">S</span>
+  </p>
+</strong>
+
+<script>
+  // Set the date we're counting down to
+  const countDownDate = new Date("Dec 26, 2020 0:0:00").getTime();
+
+  // Update the count down every 1 second
+  let x = setInterval(() => {
+    // Get today's time
+    let now = new Date().getTime();
+
+    // Find the distance between now and the countdown date
+    let distance = countDownDate - now;
+
+    // Time calculations for days, hours, and seconds
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // --
+    // -- output the result
+    document.getElementById("daysTopMobile").textContent = days;
+    document.getElementById("hoursTopMobile").textContent = hours;
+    document.getElementById("minutesTopMobile").textContent = minutes;
+    document.getElementById("secondsTopMobile").textContent = seconds;
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdownTopMobile").textContent = "EXPIRED";
     }
-    .separatorTopMobile {
-      font-size: 10px;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-  </style>
-  
-  <strong>
-    <p id="countdownTopMobile">
-      <span id="daysTopMobile">_</span><span class="separatorTopMobile">D</span>
-      <span id="hoursTopMobile">_</span><span class="separatorTopMobile">H</span>
-      <span id="minutesTopMobile">_</span><span class="separatorTopMobile">M</span>
-      <span id="secondsTopMobile">_</span><span class="separatorTopMobile">S</span>
-    </p>
-  </strong>
-  
-  <script>
-    // Set the date we're counting down to
-    const countDownDate = new Date("Dec 26, 2020 0:0:00").getTime();
-  
-    // Update the count down every 1 second
-    let x = setInterval(() => {
-      // Get today's time
-      let now = new Date().getTime();
-  
-      // Find the distance between now and the countdown date
-      let distance = countDownDate - now;
-  
-      // Time calculations for days, hours, and seconds
-      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-      // --
-      // -- output the result
-      document.getElementById("daysTopMobile").textContent = days;
-      document.getElementById("hoursTopMobile").textContent = hours;
-      document.getElementById("minutesTopMobile").textContent = minutes;
-      document.getElementById("secondsTopMobile").textContent = seconds;
-  
-      // If the count down is over, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdownTopMobile").textContent = "EXPIRED";
-      }
-    }, 1000);
-  </script>
-  
+  }, 1000);
+</script>
